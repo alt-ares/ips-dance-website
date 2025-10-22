@@ -27,7 +27,6 @@ import {
   formatDateDisplay, 
   formatVenueCity
 } from "@/lib/utils/dateFormatters";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface HomePageProps {
   lang: Language;
@@ -134,7 +133,8 @@ export function HomePage({ lang }: HomePageProps) {
       window.removeEventListener('mousemove', handleMouseMove);
       
       // Nettoyer les ScrollTriggers GSAP
-      if (typeof window !== 'undefined' && ScrollTrigger) {
+      if (typeof window !== 'undefined') {
+        const ScrollTrigger = require('gsap/ScrollTrigger').ScrollTrigger;
         ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
       }
     };
@@ -204,7 +204,7 @@ export function HomePage({ lang }: HomePageProps) {
         {/* Binary Code Scroll */}
         <div 
           ref={binaryMaskRef}
-          className="absolute inset-0 flex items-end pb-32 sm:pb-64 overflow-hidden pointer-events-none z-5 binary-mobile-visible"
+          className="absolute inset-0 flex items-end pb-64 overflow-hidden pointer-events-none z-5"
           style={{
             '--mouse-x': '50%',
             '--mouse-y': '50%',
@@ -213,10 +213,10 @@ export function HomePage({ lang }: HomePageProps) {
           } as React.CSSProperties}
         >
           <div className="flex animate-binary-scroll-infinite">
-            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0 sm:opacity-12" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: '0.03' }}>
+            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: 0.12 }}>
               01001001 01101101 01100001 01100111 01100101 01110011 00100000 01110000 01100001 01110010 00100000 01110011 01100101 01100011 01101111 01101110 01100100 01100101 01110011
             </div>
-            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0 sm:opacity-12" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: '0.03' }}>
+            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: 0.12 }}>
               01001001 01101101 01100001 01100111 01100101 01110011 00100000 01110000 01100001 01110010 00100000 01110011 01100101 01100011 01101111 01101110 01100100 01100101 01110011
             </div>
           </div>
@@ -454,11 +454,11 @@ export function HomePage({ lang }: HomePageProps) {
         {/* H1 Title - Vertical on mobile, centered on desktop */}
         <div className="absolute left-4 sm:inset-0 sm:flex sm:items-center sm:justify-center top-[52%] -translate-y-1/2 sm:translate-y-0 z-20">
           {/* Mobile: Vertical layout */}
-          <h1 className="font-grotesk font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white animate-float leading-none sm:hidden opacity-0">
+          <h1 className="font-grotesk font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white animate-float leading-none sm:hidden">
             {t.hero.title.split("").map((letter, index) => (
               <div
                 key={index}
-                className="animate-fade-in-up opacity-0"
+                className="animate-fade-in-up"
                 style={{ 
                   animationDelay: `${index * 50}ms`,
                   animationFillMode: 'both'
@@ -500,7 +500,7 @@ export function HomePage({ lang }: HomePageProps) {
         <div className="container-custom relative z-10">
           <SectionLabel number="01" title={t.about.sectionTitle} />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 md:gap-16 items-center mb-12 sm:mb-16 md:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center mb-12 sm:mb-16 md:mb-20">
             <div className="space-y-8 scroll-reveal">
               <h2 className="font-grotesk font-bold text-5xl md:text-6xl text-white">
                 {t.about.heading}
@@ -510,7 +510,7 @@ export function HomePage({ lang }: HomePageProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-8 text-center stagger-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center stagger-fade-in">
               <div>
                 <div className="text-4xl md:text-5xl font-grotesk font-bold text-brand-orange counter" data-target="8">
                   0
@@ -532,7 +532,7 @@ export function HomePage({ lang }: HomePageProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <LiquidCard
               title={t.about.cards.choreography.title}
               description={t.about.cards.choreography.description}
@@ -574,51 +574,27 @@ export function HomePage({ lang }: HomePageProps) {
           
           {/* Filter Bar */}
           <div className="sticky top-20 sm:top-24 z-30 mb-8 sm:mb-12">
-            {/* Mobile: Dropdown */}
-            <div className="sm:hidden">
-              <select
-                value={activeFilter}
-                onChange={(e) => setActiveFilter(e.target.value)}
-                className="w-full glass rounded-full p-3 text-sm font-inter text-white bg-transparent border-none outline-none appearance-none cursor-pointer"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23E85002' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                  backgroundPosition: 'right 12px center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: '16px'
-                }}
-              >
-                {filters.map((filter) => (
-                  <option key={filter} value={filter} className="bg-black text-white">
-                    {filter}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Desktop: Button Bar */}
-            <div className="hidden sm:block">
-              <div className="glass rounded-full p-1 sm:p-2 inline-flex gap-1 sm:gap-2">
-                {filters.map((filter) => (
-                  <button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 whitespace-nowrap ${
-                      activeFilter === filter
-                        ? 'bg-brand-orange text-white'
-                        : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
-                    }`}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
+            <div className="glass rounded-full p-1 sm:p-2 inline-flex gap-1 sm:gap-2 overflow-x-auto">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 whitespace-nowrap ${
+                    activeFilter === filter
+                      ? 'bg-brand-orange text-white'
+                      : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Shows Grid */}
           <motion.div 
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             <AnimatePresence mode="popLayout">
               {filteredShows.map((show) => (
@@ -751,7 +727,7 @@ export function HomePage({ lang }: HomePageProps) {
         <div className="container-custom">
           <SectionLabel number="04" title={t.contact.sectionTitle} />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 md:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
             {/* Contact Form */}
             <div className="scroll-reveal">
               <ContactForm lang={lang} />

@@ -235,7 +235,7 @@
       transform: translateY(30px);
     }
     100% {
-      opacity: 0;
+      opacity: 1;
       transform: translateY(0);
     }
   }
@@ -284,7 +284,7 @@
 
   /* Container */
   .container-custom {
-    @apply max-w-sm sm:max-w-3xl md:max-w-5xl lg:max-w-7xl xl:max-w-8xl 2xl:max-w-9xl 3xl:max-w-10xl 4xl:max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 3xl:px-24 4xl:px-32;
+    @apply max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 3xl:px-24 4xl:px-32;
   }
 
   /* Hero fixed scroll effect */
@@ -322,12 +322,6 @@
     .content-wrapper {
       min-height: 100dvh;
       margin-top: 100dvh; /* Use dynamic viewport height on mobile */
-    }
-    
-    /* Binary code always visible on mobile */
-    .binary-mobile-visible {
-      mask-image: none !important;
-      -webkit-mask-image: none !important;
     }
   }
 }

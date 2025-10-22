@@ -50,13 +50,6 @@ export function ShowTile({
             }}
           />
         )}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center p-6">
-            <div className="text-6xl md:text-7xl font-grotesk font-bold text-white/10 mb-4">
-              {title}
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Orange overlay with wipe effect */}

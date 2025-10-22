@@ -4,11 +4,8 @@ import { useState, useEffect } from "react";
 
 export function useIsMobile(breakpoint: number = 768): boolean {
   const [isMobile, setIsMobile] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-    
     const checkMobile = () => {
       setIsMobile(window.innerWidth < breakpoint);
     };
@@ -23,8 +20,7 @@ export function useIsMobile(breakpoint: number = 768): boolean {
     return () => window.removeEventListener("resize", checkMobile);
   }, [breakpoint]);
 
-  // Return false during SSR to avoid hydration mismatch
-  return isClient ? isMobile : false;
+  return isMobile;
 }
 
 

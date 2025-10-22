@@ -3,13 +3,9 @@
 import { useState, useEffect } from "react";
 
 export function RealTimeClock() {
-  const [time, setTime] = useState<Date | null>(null);
-  const [isClient, setIsClient] = useState(false);
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    setIsClient(true);
-    setTime(new Date());
-    
     const timer = setInterval(() => {
       setTime(new Date());
     }, 1000);
@@ -35,19 +31,6 @@ export function RealTimeClock() {
     
     return `${day}.${month} • ${dayName} • ${timezone}`;
   };
-
-  if (!isClient || !time) {
-    return (
-      <div className="text-white font-grotesk">
-        <div className="text-lg sm:text-2xl md:text-3xl font-bold mb-1">
-          --:--
-        </div>
-        <div className="text-xs sm:text-sm text-white font-inter">
-          --.-- • --- • ---
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="text-white font-grotesk">

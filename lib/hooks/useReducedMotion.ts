@@ -4,11 +4,8 @@ import { useState, useEffect } from "react";
 
 export function useReducedMotion(): boolean {
   const [reducedMotion, setReducedMotion] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-    
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     
     // Set initial value
@@ -26,8 +23,7 @@ export function useReducedMotion(): boolean {
     };
   }, []);
 
-  // Return false during SSR to avoid hydration mismatch
-  return isClient ? reducedMotion : false;
+  return reducedMotion;
 }
 
 

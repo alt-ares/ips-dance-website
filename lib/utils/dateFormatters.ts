@@ -75,22 +75,9 @@ export function getUpcomingDates(
 /**
  * Génère un pourcentage de remplissage aléatoire (mock)
  * TODO: En production, récupérer depuis la base de données
- * Note: Utilise un seed basé sur l'ID pour éviter les mismatches d'hydratation
  */
-export function getMockFillPercentage(id?: string): number {
-  // Si un ID est fourni, utilise-le comme seed pour la cohérence
-  if (id) {
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-      const char = id.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32bit integer
-    }
-    // Utilise le hash pour générer un nombre entre 40 et 95
-    return Math.abs(hash) % (95 - 40 + 1) + 40;
-  }
-  
-  // Fallback: génère un nombre aléatoire entre 40 et 95
+export function getMockFillPercentage(): number {
+  // Génère un nombre aléatoire entre 40 et 95
   return Math.floor(Math.random() * (95 - 40 + 1)) + 40;
 }
 
