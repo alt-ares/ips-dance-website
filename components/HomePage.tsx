@@ -250,101 +250,172 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* Info Cards - Full Height Right */}
+        {/* Info Cards - Responsive Layout */}
         <div className="absolute top-4 right-4 bottom-4 sm:top-8 sm:right-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
-          <InfoCard
-            title="INFO"
-            subtitle=""
-            content=""
-            href="#about"
-            icon=""
-            notification={false}
-            small={true}
-          />
-          
-          {/* Première date dynamique */}
-          {nextDate1 ? (
+          {/* Mobile: Layout compact avec moins de cartes */}
+          <div className="flex flex-col gap-2 sm:hidden">
             <InfoCard
-              title={nextDate1.show}
-              subtitle={t.infoCards.nextPerformance}
-              content={formatVenueCity(nextDate1.venue, nextDate1.city)}
+              title="INFO"
+              subtitle=""
+              content=""
+              href="#about"
+              icon=""
+              notification={false}
+              small={true}
+              compact={true}
+            />
+            
+            {/* Une seule carte de date sur mobile */}
+            {nextDate1 ? (
+              <InfoCard
+                title={nextDate1.show}
+                subtitle={t.infoCards.nextPerformance}
+                content={formatVenueCity(nextDate1.venue, nextDate1.city)}
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={nextDate1.date + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={fillPercent1}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent1.toString())}
+                large={false}
+                small={true}
+                compact={true}
+              />
+            ) : (
+              <InfoCard
+                title="PARALLAXE"
+                subtitle={t.infoCards.nextPerformance}
+                content="Théâtre de la Ville - Paris"
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={"15.12" + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={85}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', '85')}
+                large={false}
+                small={true}
+                compact={true}
+              />
+            )}
+            
+            {/* Carte "Toutes les dates" compacte sur mobile */}
+            <InfoCard
+              title={t.infoCards.allDates.toUpperCase()}
+              subtitle={t.infoCards.upcomingPerformances}
+              content={dates[0] ? `${dates[0].date} • ${dates[0].city}` : ""}
               href="#dates"
               icon=""
               notification={false}
-              rightContent={nextDate1.date + (lang === 'en' ? ' (dd/mm)' : '')}
-              progressBar={true}
-              progressValue={fillPercent1}
-              bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent1.toString())}
-              large={false}
+              rightContent=""
+              bottomText={dates[1] ? `${dates[1].date} • ${dates[1].city}` : ""}
+              bottomRightContent=""
+              extraContent=""
+              extraContent2=""
+              uniformDates={true}
+              highlightNextDate={true}
               small={true}
+              compact={true}
             />
-          ) : (
+          </div>
+
+          {/* Desktop: Layout complet */}
+          <div className="hidden sm:flex flex-col gap-5 h-full">
             <InfoCard
-              title="PARALLAXE"
-              subtitle={t.infoCards.nextPerformance}
-              content="Théâtre de la Ville - Paris"
+              title="INFO"
+              subtitle=""
+              content=""
+              href="#about"
+              icon=""
+              notification={false}
+              small={false}
+            />
+            
+            {/* Première date dynamique */}
+            {nextDate1 ? (
+              <InfoCard
+                title={nextDate1.show}
+                subtitle={t.infoCards.nextPerformance}
+                content={formatVenueCity(nextDate1.venue, nextDate1.city)}
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={nextDate1.date + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={fillPercent1}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent1.toString())}
+                large={true}
+                small={false}
+              />
+            ) : (
+              <InfoCard
+                title="PARALLAXE"
+                subtitle={t.infoCards.nextPerformance}
+                content="Théâtre de la Ville - Paris"
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={"15.12" + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={85}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', '85')}
+                large={true}
+                small={false}
+              />
+            )}
+            
+            {/* Deuxième date dynamique */}
+            {nextDate2 ? (
+              <InfoCard
+                title={nextDate2.show}
+                subtitle={t.infoCards.nextPerformance}
+                content={formatVenueCity(nextDate2.venue, nextDate2.city)}
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={nextDate2.date + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={fillPercent2}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent2.toString())}
+                large={true}
+                small={false}
+              />
+            ) : (
+              <InfoCard
+                title="FOCAL"
+                subtitle={t.infoCards.nextPerformance}
+                content="Centre Pompidou - Paris"
+                href="#dates"
+                icon=""
+                notification={false}
+                rightContent={"22.01" + (lang === 'en' ? ' (dd/mm)' : '')}
+                progressBar={true}
+                progressValue={60}
+                bottomText={t.infoCards.hallPercentFull.replace('{percent}', '60')}
+                large={true}
+                small={false}
+              />
+            )}
+            
+            {/* Toutes les dates */}
+            <InfoCard
+              title={t.infoCards.allDates.toUpperCase()}
+              subtitle={t.infoCards.upcomingPerformances}
+              content={dates[0] ? `${dates[0].date} • ${dates[0].city} • ${dates[0].venue}` : ""}
               href="#dates"
               icon=""
               notification={false}
-              rightContent={"15.12" + (lang === 'en' ? ' (dd/mm)' : '')}
-              progressBar={true}
-              progressValue={85}
-              bottomText={t.infoCards.hallPercentFull.replace('{percent}', '85')}
-              large={false}
-              small={true}
+              rightContent=""
+              bottomText={dates[1] ? `${dates[1].date} • ${dates[1].city} • ${dates[1].venue}` : ""}
+              bottomRightContent=""
+              extraContent={dates[2] ? `${dates[2].date} • ${dates[2].city} • ${dates[2].venue}` : ""}
+              extraContent2={dates[3] ? `${dates[3].date} • ${dates[3].city} • ${dates[3].venue}` : ""}
+              uniformDates={true}
+              highlightNextDate={true}
+              small={false}
             />
-          )}
-          
-          {/* Deuxième date dynamique */}
-          {nextDate2 ? (
-            <InfoCard
-              title={nextDate2.show}
-              subtitle={t.infoCards.nextPerformance}
-              content={formatVenueCity(nextDate2.venue, nextDate2.city)}
-              href="#dates"
-              icon=""
-              notification={false}
-              rightContent={nextDate2.date + (lang === 'en' ? ' (dd/mm)' : '')}
-              progressBar={true}
-              progressValue={fillPercent2}
-              bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent2.toString())}
-              large={false}
-              small={true}
-            />
-          ) : (
-            <InfoCard
-              title="FOCAL"
-              subtitle={t.infoCards.nextPerformance}
-              content="Centre Pompidou - Paris"
-              href="#dates"
-              icon=""
-              notification={false}
-              rightContent={"22.01" + (lang === 'en' ? ' (dd/mm)' : '')}
-              progressBar={true}
-              progressValue={60}
-              bottomText={t.infoCards.hallPercentFull.replace('{percent}', '60')}
-              large={false}
-              small={true}
-            />
-          )}
-          
-          {/* Toutes les dates */}
-          <InfoCard
-            title={t.infoCards.allDates.toUpperCase()}
-            subtitle={t.infoCards.upcomingPerformances}
-            content={dates[0] ? `${dates[0].date} • ${dates[0].city} • ${dates[0].venue}` : ""}
-            href="#dates"
-            icon=""
-            notification={false}
-            rightContent=""
-            bottomText={dates[1] ? `${dates[1].date} • ${dates[1].city} • ${dates[1].venue}` : ""}
-            bottomRightContent=""
-            extraContent={dates[2] ? `${dates[2].date} • ${dates[2].city} • ${dates[2].venue}` : ""}
-            extraContent2={dates[3] ? `${dates[3].date} • ${dates[3].city} • ${dates[3].venue}` : ""}
-            uniformDates={true}
-            highlightNextDate={true}
-            small={true}
-          />
+          </div>
         </div>
 
         {/* Bottom Left Horizontal Layout - SMC + POINT + HEURES + REAL TIME */}

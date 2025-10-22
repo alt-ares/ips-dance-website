@@ -23,6 +23,7 @@ interface InfoCardProps {
   highlightNextDate?: boolean;
   large?: boolean;
   small?: boolean;
+  compact?: boolean;
 }
 
 export function InfoCard({ 
@@ -43,7 +44,8 @@ export function InfoCard({
   uniformDates = false,
   highlightNextDate = false,
   large = false,
-  small = false
+  small = false,
+  compact = false
 }: InfoCardProps) {
   const reducedMotion = useReducedMotion();
 
@@ -68,11 +70,11 @@ export function InfoCard({
     <motion.a
       href={href}
       onClick={handleClick}
-      className={`group relative block w-full max-w-[280px] sm:max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
+      className={`group relative block w-full ${compact ? 'max-w-[240px]' : 'max-w-[280px]'} sm:max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className={`glass rounded-2xl cursor-glow relative overflow-hidden ${small ? 'h-auto flex items-center' : 'h-full flex flex-col'} ${large ? 'p-8' : small ? 'p-4' : 'p-6'}`}>
+      <div className={`glass rounded-2xl cursor-glow relative overflow-hidden ${small ? 'h-auto flex items-center' : 'h-full flex flex-col'} ${large ? 'p-8' : compact ? 'p-3' : small ? 'p-4' : 'p-6'}`}>
         {/* Notification dot */}
         {notification && (
           <div className="absolute top-4 right-4 w-2 h-2 bg-brand-orange rounded-full animate-pulse" />
@@ -80,7 +82,7 @@ export function InfoCard({
         
         {/* Header */}
         <div className={`flex items-center justify-between w-full ${small ? '' : 'mb-3'}`}>
-          <h3 className={`font-grotesk font-bold text-white ${large ? 'text-xl' : small ? 'text-base' : 'text-lg'}`}>
+          <h3 className={`font-grotesk font-bold text-white ${large ? 'text-xl' : compact ? 'text-sm' : small ? 'text-base' : 'text-lg'}`}>
             {title}
           </h3>
           <div className="flex items-center justify-center gap-2">
