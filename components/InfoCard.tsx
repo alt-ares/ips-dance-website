@@ -68,7 +68,7 @@ export function InfoCard({
     <motion.a
       href={href}
       onClick={handleClick}
-      className={`group relative block w-full max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
+      className={`group relative block w-full max-w-[280px] sm:max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >

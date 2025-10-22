@@ -25,13 +25,13 @@ export function TimeZones() {
 
   return (
     <div className="space-y-1">
-      <div className="text-sm text-white font-inter">
+      <div className="text-xs sm:text-sm text-white font-inter">
         {getTimeInTimezone(1, 'CET')} • CET
       </div>
-      <div className="text-sm text-white font-inter">
+      <div className="text-xs sm:text-sm text-white font-inter">
         {getTimeInTimezone(-4, 'EDT')} • EDT
       </div>
-      <div className="text-sm text-white font-inter">
+      <div className="text-xs sm:text-sm text-white font-inter">
         {getTimeInTimezone(-6, 'CST')} • CST
       </div>
     </div>

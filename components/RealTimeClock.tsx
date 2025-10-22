@@ -34,10 +34,10 @@ export function RealTimeClock() {
 
   return (
     <div className="text-white font-grotesk">
-      <div className="text-2xl md:text-3xl font-bold mb-1">
+      <div className="text-lg sm:text-2xl md:text-3xl font-bold mb-1">
         {formatTime(time)}
       </div>
-      <div className="text-sm text-white font-inter">
+      <div className="text-xs sm:text-sm text-white font-inter">
         {formatDate(time)}
       </div>
     </div>

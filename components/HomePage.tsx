@@ -236,22 +236,22 @@ export function HomePage({ lang }: HomePageProps) {
         />
 
         {/* Logo IPS - Top Left */}
-        <div className="absolute top-8 left-8 z-20">
+        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
           <div className="text-white">
-            <div className="font-grotesk font-bold text-2xl mb-1">
+            <div className="font-grotesk font-bold text-lg sm:text-2xl mb-1">
               ips:
             </div>
-            <div className="text-sm text-white font-inter">
+            <div className="text-xs sm:text-sm text-white font-inter">
               {t.hero.title.toLowerCase()}
             </div>
-            <div className="text-sm text-white font-inter">
+            <div className="text-xs sm:text-sm text-white font-inter">
               {t.hero.subtitle.toLowerCase()}
             </div>
           </div>
         </div>
 
         {/* Info Cards - Full Height Right */}
-        <div className="absolute top-8 right-8 bottom-8 z-20 flex flex-col gap-5">
+        <div className="absolute top-4 right-4 bottom-4 sm:top-8 sm:right-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
           <InfoCard
             title="INFO"
             subtitle=""
@@ -275,7 +275,8 @@ export function HomePage({ lang }: HomePageProps) {
               progressBar={true}
               progressValue={fillPercent1}
               bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent1.toString())}
-              large={true}
+              large={false}
+              small={true}
             />
           ) : (
             <InfoCard
@@ -289,7 +290,8 @@ export function HomePage({ lang }: HomePageProps) {
               progressBar={true}
               progressValue={85}
               bottomText={t.infoCards.hallPercentFull.replace('{percent}', '85')}
-              large={true}
+              large={false}
+              small={true}
             />
           )}
           
@@ -306,7 +308,8 @@ export function HomePage({ lang }: HomePageProps) {
               progressBar={true}
               progressValue={fillPercent2}
               bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent2.toString())}
-              large={true}
+              large={false}
+              small={true}
             />
           ) : (
             <InfoCard
@@ -320,7 +323,8 @@ export function HomePage({ lang }: HomePageProps) {
               progressBar={true}
               progressValue={60}
               bottomText={t.infoCards.hallPercentFull.replace('{percent}', '60')}
-              large={true}
+              large={false}
+              small={true}
             />
           )}
           
@@ -339,22 +343,23 @@ export function HomePage({ lang }: HomePageProps) {
             extraContent2={dates[3] ? `${dates[3].date} • ${dates[3].city} • ${dates[3].venue}` : ""}
             uniformDates={true}
             highlightNextDate={true}
+            small={true}
           />
         </div>
 
         {/* Bottom Left Horizontal Layout - SMC + POINT + HEURES + REAL TIME */}
-        <div className="absolute bottom-8 left-8 z-20">
-          <div className="flex items-center gap-6">
+        <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-20">
+          <div className="flex items-center gap-2 sm:gap-6">
             {/* IPS */}
             <div className="text-white">
-              <div className="font-grotesk font-bold text-3xl sm:text-4xl">
+              <div className="font-grotesk font-bold text-xl sm:text-3xl md:text-4xl">
                 IPS
               </div>
             </div>
             
             {/* POINT (icône circulaire) */}
-            <div className="w-8 h-8 bg-brand-orange rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded-full"></div>
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-brand-orange rounded-full flex items-center justify-center">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
             </div>
             
             {/* HEURES CET EDT CST */}
@@ -364,7 +369,7 @@ export function HomePage({ lang }: HomePageProps) {
             
             {/* REAL TIME */}
             <div className="text-white">
-              <div className="font-grotesk font-bold text-2xl mb-1">
+              <div className="font-grotesk font-bold text-lg sm:text-2xl mb-1">
                 REAL•TIME
               </div>
               <RealTimeClock />
@@ -373,8 +378,8 @@ export function HomePage({ lang }: HomePageProps) {
         </div>
 
         {/* H1 Title - Center */}
-        <div className="absolute inset-0 flex items-center justify-center z-20">
-          <h1 className="font-grotesk font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white text-center animate-float">
+        <div className="absolute inset-0 flex items-center justify-center z-20 px-4">
+          <h1 className="font-grotesk font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white text-center animate-float leading-tight">
             {t.hero.title.split("").map((letter, index) => (
               <span
                 key={index}
