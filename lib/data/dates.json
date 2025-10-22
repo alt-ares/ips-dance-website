@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "date": "15.11",
+    "fullDate": "2025-11-15",
+    "city": "Paris",
+    "venue": "Le Centquatre",
+    "show": "PARALLAXE",
+    "ticketsUrl": "https://www.example.com/tickets/parallaxe",
+    "imageUrl": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=1200&h=800&fit=crop",
+    "createdAt": "2025-10-22T00:00:00.000Z",
+    "updatedAt": "2025-10-22T13:39:41.735Z"
+  },
+  {
+    "id": "2",
+    "date": "08.12",
+    "fullDate": "2025-12-08",
+    "city": "Marseille",
+    "venue": "La Criée",
+    "show": "FOCAL",
+    "imageUrl": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1200&h=800&fit=crop",
+    "createdAt": "2025-10-22T00:00:00.000Z",
+    "updatedAt": "2025-10-22T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "date": "22.01",
+    "fullDate": "2026-01-22",
+    "city": "Lyon",
+    "venue": "Les Subs",
+    "show": "24 i/s",
+    "ticketsUrl": "https://www.example.com/tickets/24ips",
+    "createdAt": "2025-10-22T00:00:00.000Z",
+    "updatedAt": "2025-10-22T00:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "date": "14.02",
+    "fullDate": "2026-02-14",
+    "city": "Toulouse",
+    "venue": "Théâtre Garonne",
+    "show": "NOISE",
+    "createdAt": "2025-10-22T00:00:00.000Z",
+    "updatedAt": "2025-10-22T00:00:00.000Z"
+  }
+]

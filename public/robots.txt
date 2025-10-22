@@ -1,0 +1,16 @@
+# robots.txt pour DÉVELOPPEMENT
+# Empêche l'indexation pendant le développement local
+
+User-agent: *
+Disallow: /
+
+# ============================================
+# VERSION PRODUCTION (à activer lors du déploiement)
+# ============================================
+# User-agent: *
+# Allow: /
+# Disallow: /admin/
+# Disallow: /api/
+# 
+# Sitemap: https://www.imagesparseconde.com/sitemap.xml
+
