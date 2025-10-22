@@ -250,8 +250,8 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* Info Cards - Responsive Layout */}
-        <div className="absolute top-4 right-4 bottom-4 sm:top-8 sm:right-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
+        {/* Info Cards - Responsive Layout - Moved to bottom */}
+        <div className="absolute right-4 bottom-4 sm:right-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
           {/* Mobile: Layout compact avec moins de cartes */}
           <div className="flex flex-col gap-2 sm:hidden">
             <InfoCard
@@ -311,7 +311,7 @@ export function HomePage({ lang }: HomePageProps) {
               rightContent=""
               bottomText={dates[1] ? `${dates[1].date} • ${dates[1].city}` : ""}
               bottomRightContent=""
-              extraContent=""
+              extraContent={dates[2] ? `${dates[2].date} • ${dates[2].city}` : ""}
               extraContent2=""
               uniformDates={true}
               highlightNextDate={true}
@@ -448,20 +448,20 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* H1 Title - Center */}
-        <div className="absolute inset-0 flex items-center justify-center z-20 px-4">
-          <h1 className="font-grotesk font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white text-center animate-float leading-tight">
+        {/* H1 Title - Vertical Left */}
+        <div className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20">
+          <h1 className="font-grotesk font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white animate-float leading-none">
             {t.hero.title.split("").map((letter, index) => (
-              <span
+              <div
                 key={index}
-                className="inline-block animate-fade-in-up"
+                className="animate-fade-in-up"
                 style={{ 
-                  animationDelay: `${index * 100}ms`,
+                  animationDelay: `${index * 50}ms`,
                   animationFillMode: 'both'
                 }}
               >
                 {letter === " " ? "\u00A0" : letter}
-              </span>
+              </div>
             ))}
           </h1>
         </div>
