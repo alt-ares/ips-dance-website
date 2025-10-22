@@ -324,3 +324,48 @@ export function staggerFadeIn(elements: HTMLElement[] | string, delay: number = 
   });
 }
 
+/**
+ * Scrolling orange circle animation
+ * Creates a smooth animated circle that travels from below About section to Contact section
+ * with sinusoidal horizontal movement and proper fade in/out
+ */
+export function scrollingOrangeCircle(circleElement: HTMLElement) {
+  // Set initial GPU acceleration for better performance
+  gsap.set(circleElement, {
+    force3D: true,
+    willChange: "transform, opacity",
+    opacity: 0,
+  });
+
+  // Main ScrollTrigger that controls the entire animation
+  ScrollTrigger.create({
+    trigger: "#about",
+    start: "bottom top",
+    end: "bottom+=3000 top",
+    scrub: 1,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      
+      // Calculate opacity
+      let opacity = 1;
+      if (progress < 0.1) {
+        opacity = progress * 10;
+      } else if (progress > 0.85) {
+        opacity = (1 - progress) * 6.67;
+      }
+      
+      // Vertical movement (descend through the page)
+      const yMovement = progress * window.innerHeight * 2;
+      
+      // Sinusoidal horizontal movement (3 full waves)
+      const xMovement = Math.sin(progress * Math.PI * 6) * 60;
+      
+      gsap.set(circleElement, {
+        y: yMovement,
+        x: xMovement,
+        opacity: opacity,
+      });
+    },
+  });
+}
+

@@ -16,6 +16,7 @@ import {
   scrollReveal,
   animateCounter,
   staggerFadeIn,
+  scrollingOrangeCircle,
 } from "@/lib/animations";
 import { useReducedMotion } from "@/lib/hooks";
 import { getShows } from "@/lib/data/shows";
@@ -38,6 +39,7 @@ export function HomePage({ lang }: HomePageProps) {
   const binaryMaskRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const aboutImageMaskRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   
   const [dates, setDates] = useState<PerformanceDate[]>(fallbackDates);
@@ -97,6 +99,11 @@ export function HomePage({ lang }: HomePageProps) {
       const target = parseInt(counter.getAttribute("data-target") || "0");
       animateCounter(counter as HTMLElement, 0, target, 2);
     });
+
+    // Scrolling orange circle animation
+    if (circleRef.current && !reducedMotion) {
+      scrollingOrangeCircle(circleRef.current);
+    }
 
     // Mouse glow effect
     const handleMouseMove = (e: MouseEvent) => {
@@ -159,6 +166,25 @@ export function HomePage({ lang }: HomePageProps) {
       <div className="transition-opacity duration-500 opacity-100">
         <Header lang={lang} />
         <main className="relative">
+      
+      {/* Scrolling Orange Circle */}
+      <div 
+        ref={circleRef}
+        className="pointer-events-none"
+        style={{
+          position: 'fixed',
+          width: '250px',
+          height: '250px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(232, 80, 2, 0.8) 0%, rgba(232, 80, 2, 0.5) 50%, rgba(232, 80, 2, 0.2) 80%)',
+          filter: 'blur(30px)',
+          zIndex: 22,
+          opacity: 0,
+          left: '50%',
+          top: '20vh',
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
       
       {/* Hero Section */}
       <section
@@ -661,7 +687,7 @@ export function HomePage({ lang }: HomePageProps) {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {/* Carte principale */}
-                  <div className="glass rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 cursor-pointer relative overflow-hidden">
+                  <div className="glass rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 cursor-pointer relative overflow-hidden" style={{ position: 'relative', zIndex: 25 }}>
                     {/* Image de fond visible au survol seulement */}
                     {date.imageUrl && (
                       <>
