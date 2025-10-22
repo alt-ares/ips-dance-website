@@ -80,68 +80,63 @@ export function InfoCard({
           <div className="absolute top-4 right-4 w-2 h-2 bg-brand-orange rounded-full animate-pulse" />
         )}
         
-        {/* Header - Vertical Layout */}
+        {/* Header - Single Column Layout */}
         <div className={`flex flex-col ${small ? '' : 'mb-3'}`}>
           <div className="flex items-center justify-between w-full mb-2">
             <h3 className={`font-grotesk font-bold text-white ${large ? 'text-xl' : compact ? 'text-sm' : small ? 'text-base' : 'text-lg'}`}>
               {title}
             </h3>
-            <div className="flex items-center justify-center gap-2">
-              {icon && (
-                <span className="text-brand-orange text-sm">{icon}</span>
-              )}
-              <motion.div
-                className="w-4 h-4 text-white flex items-center justify-center"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                →
-              </motion.div>
-            </div>
+            <motion.div
+              className="w-4 h-4 text-white flex items-center justify-center"
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              →
+            </motion.div>
           </div>
         </div>
 
-        {/* Content - Vertical Stack */}
+        {/* Content - Single Column Layout */}
         <div className={`space-y-1 ${large ? 'space-y-2' : ''} ${small ? '' : 'flex-1 flex flex-col justify-center'}`}>
+          {/* Subtitle */}
           {subtitle && (
             <p className={`text-white font-inter ${large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'}`}>
               {subtitle}
             </p>
           )}
           
-          {/* Main content - Vertical layout */}
-          <div className="space-y-1">
-            {content && (
-              <div className={`${highlightNextDate ? 'bg-brand-orange rounded-lg px-2 py-1' : ''}`}>
-                <p className={`font-inter font-medium text-white ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
-                  {content}
-                </p>
-              </div>
-            )}
-            
-            {rightContent && (
-              <p className={`text-white font-inter font-medium ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
-                {rightContent}
+          {/* Main content - Single column */}
+          {content && (
+            <div className={`${highlightNextDate ? 'bg-brand-orange rounded-lg px-2 py-1' : ''}`}>
+              <p className={`font-inter font-medium text-white ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
+                {content}
               </p>
-            )}
+            </div>
+          )}
+          
+          {/* Right content (dates) */}
+          {rightContent && (
+            <p className={`text-white font-inter font-medium ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
+              {rightContent}
+            </p>
+          )}
 
-            {/* Extra content lines for dates - Vertical stack */}
-            {bottomText && (
-              <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
-                {bottomText}
-              </p>
-            )}
-            {extraContent && (
-              <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
-                {extraContent}
-              </p>
-            )}
-            {extraContent2 && (
-              <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
-                {extraContent2}
-              </p>
-            )}
-          </div>
+          {/* Additional content lines - Vertical stack */}
+          {bottomText && (
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+              {bottomText}
+            </p>
+          )}
+          {extraContent && (
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+              {extraContent}
+            </p>
+          )}
+          {extraContent2 && (
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+              {extraContent2}
+            </p>
+          )}
 
           {/* Circular icon */}
           {circularIcon && (

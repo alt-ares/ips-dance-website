@@ -250,8 +250,8 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* Info Cards - Responsive Layout - Moved to bottom */}
-        <div className="absolute right-4 bottom-4 sm:right-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
+        {/* Info Cards - Responsive Layout - Below header */}
+        <div className="absolute right-4 top-[88px] sm:right-8 sm:top-[100px] z-20 flex flex-col gap-2 sm:gap-5">
           {/* Mobile: Layout compact avec moins de cartes */}
           <div className="flex flex-col gap-2 sm:hidden">
             <InfoCard
