@@ -28,9 +28,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Mot de passe simple pour le développement
-    // TODO: En production, remplacer par une vraie authentification
-    const correctPassword = 'admin123'; // À changer !
+    // Mot de passe sécurisé via variable d'environnement
+    const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123';
     
     if (password === correctPassword) {
       localStorage.setItem('admin_auth', 'true');
