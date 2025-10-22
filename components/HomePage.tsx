@@ -36,7 +36,7 @@ export function HomePage({ lang }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const binaryMaskRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLSection>(null);
+  const aboutRef = useRef<HTMLElement>(null);
   const aboutImageMaskRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   
