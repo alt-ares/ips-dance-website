@@ -10,7 +10,7 @@ export const translations = {
     },
     // Hero Section
     hero: {
-      title: "Images par secondes",
+      title: "Images par seconde",
       subtitle: "Compagnie de danse contemporaine",
     },
     // Info Cards
@@ -128,7 +128,7 @@ export const translations = {
     },
     // Hero Section
     hero: {
-      title: "Images par secondes",
+      title: "Images par seconde",
       subtitle: "Contemporary dance company",
     },
     // Info Cards

@@ -579,40 +579,58 @@ export function HomePage({ lang }: HomePageProps) {
           
           {/* Filter Bar */}
           <div className="sticky top-20 sm:top-24 z-30 mb-8 sm:mb-12">
-            <div className="glass rounded-full p-1 sm:p-2 inline-flex gap-1 sm:gap-2 overflow-x-auto">
-              {filters.map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 whitespace-nowrap ${
-                    activeFilter === filter
-                      ? 'bg-brand-orange text-white'
-                      : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
+            {/* Mobile: Dropdown select */}
+            <div className="sm:hidden">
+              <select
+                value={activeFilter}
+                onChange={(e) => setActiveFilter(e.target.value)}
+                className="w-full glass rounded-full px-4 py-3 text-sm font-inter bg-transparent text-white border border-white/10 focus:border-brand-orange focus:outline-none"
+              >
+                {filters.map((filter) => (
+                  <option key={filter} value={filter} className="bg-black text-white">
+                    {filter}
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            {/* Desktop: Button pills */}
+            <div className="hidden sm:block">
+              <div className="glass rounded-full p-1 sm:p-2 flex flex-wrap gap-1 sm:gap-2 justify-center">
+                {filters.map((filter) => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 ${
+                      activeFilter === filter
+                        ? 'bg-brand-orange text-white'
+                        : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Shows Grid */}
           <motion.div 
-            layout
+            layout="position"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             <AnimatePresence mode="popLayout">
               {filteredShows.map((show) => (
                 <motion.div
                   key={show.title}
-                  layout
-                  initial={isInitialRender ? false : { opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  layout="position"
+                  initial={isInitialRender ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
                   transition={{
-                    layout: { duration: 0.5, ease: "easeInOut" },
-                    opacity: { duration: 0.4 },
-                    scale: { duration: 0.4 }
+                    layout: { duration: 0.3, ease: "easeOut" },
+                    opacity: { duration: 0.2 },
+                    y: { duration: 0.2 }
                   }}
                 >
                   <ShowTile {...show} />

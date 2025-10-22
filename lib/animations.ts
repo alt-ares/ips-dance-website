@@ -160,27 +160,34 @@ export function liquidCardHover(card: HTMLElement) {
 }
 
 /**
- * Show tile hover with gradient wipe and blur
+ * Show tile hover with gradient wipe - GPU optimized
  */
 export function showTileHover(tile: HTMLElement) {
   const overlay = tile.querySelector(".tile-overlay");
   const content = tile.querySelector(".tile-content");
 
+  // Set initial GPU acceleration
+  gsap.set([overlay, content], {
+    force3D: true,
+    willChange: "transform, opacity"
+  });
+
   tile.addEventListener("mouseenter", () => {
     if (overlay) {
       gsap.to(overlay, {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.6,
-        ease: "power3.inOut",
+        duration: 0.4,
+        ease: "power2.out",
+        force3D: true,
       });
     }
     
     if (content) {
       gsap.to(content, {
-        filter: "blur(0px)",
         scale: 1.05,
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.out",
+        force3D: true,
       });
     }
   });
@@ -189,17 +196,18 @@ export function showTileHover(tile: HTMLElement) {
     if (overlay) {
       gsap.to(overlay, {
         clipPath: "inset(0% 0% 100% 0%)",
-        duration: 0.6,
-        ease: "power3.inOut",
+        duration: 0.4,
+        ease: "power2.out",
+        force3D: true,
       });
     }
     
     if (content) {
       gsap.to(content, {
-        filter: "blur(0px)",
         scale: 1,
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.out",
+        force3D: true,
       });
     }
   });

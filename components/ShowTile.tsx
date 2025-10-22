@@ -33,7 +33,7 @@ export function ShowTile({
   return (
     <div
       ref={tileRef}
-      className="relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer group"
+      className="relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer group tile-optimized"
     >
       {/* Background image */}
       <div className="absolute inset-0 bg-gray-dark tile-content">
