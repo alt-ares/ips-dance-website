@@ -19,9 +19,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   useEffect(() => {
     // Vérifier si déjà authentifié
     const auth = localStorage.getItem('admin_auth');
-    if (auth === 'true') {
-      setIsAuthenticated(true);
-    }
+    setIsAuthenticated(auth === 'true');
     setIsLoading(false);
   }, []);
 

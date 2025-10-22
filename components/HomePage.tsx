@@ -57,13 +57,18 @@ export function HomePage({ lang }: HomePageProps) {
 
   // Charger les dates depuis l'API
   useEffect(() => {
-    fetch('/api/dates')
-      .then(res => res.json())
-      .then(data => setDates(data))
-      .catch(err => {
+    const loadDates = async () => {
+      try {
+        const res = await fetch('/api/dates');
+        const data = await res.json();
+        setDates(data);
+      } catch (err) {
         console.error('Failed to load dates:', err);
         // Utiliser les dates de fallback déjà définies
-      });
+      }
+    };
+    
+    loadDates();
   }, []);
 
   // Réinitialiser le filtre quand la langue change
@@ -80,8 +85,6 @@ export function HomePage({ lang }: HomePageProps) {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
-
     // Scroll reveal animations
     const scrollTriggers: any[] = [];
     
@@ -125,8 +128,10 @@ export function HomePage({ lang }: HomePageProps) {
       }
     };
 
-    // Add mouse move listener
-    window.addEventListener('mousemove', handleMouseMove);
+    // Add mouse move listener only if not reduced motion
+    if (!reducedMotion) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
 
     // Cleanup
     return () => {

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: true,
   
   // Note: L'i18n est géré manuellement avec l'App Router
   // La config i18n de Next.js est incompatible avec l'App Router

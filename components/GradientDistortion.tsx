@@ -135,10 +135,8 @@ export function GradientDistortion() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
-
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || isMobile) return;
 
     // Scene setup
     const scene = new THREE.Scene();

@@ -10,7 +10,9 @@ export function LenisWrapper({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Don't initialize Lenis if user prefers reduced motion
-    if (reducedMotion) return;
+    if (reducedMotion) {
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.2,
