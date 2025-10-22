@@ -204,7 +204,7 @@ export function HomePage({ lang }: HomePageProps) {
         {/* Binary Code Scroll */}
         <div 
           ref={binaryMaskRef}
-          className="absolute inset-0 flex items-end pb-64 overflow-hidden pointer-events-none z-5"
+          className="absolute inset-0 flex items-end pb-32 sm:pb-64 overflow-hidden pointer-events-none z-5 binary-mobile-visible"
           style={{
             '--mouse-x': '50%',
             '--mouse-y': '50%',
@@ -213,10 +213,10 @@ export function HomePage({ lang }: HomePageProps) {
           } as React.CSSProperties}
         >
           <div className="flex animate-binary-scroll-infinite">
-            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: 0.12 }}>
+            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0 sm:opacity-12" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: '0.03' }}>
               01001001 01101101 01100001 01100111 01100101 01110011 00100000 01110000 01100001 01110010 00100000 01110011 01100101 01100011 01101111 01101110 01100100 01100101 01110011
             </div>
-            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: 0.12 }}>
+            <div className="font-mono font-black whitespace-nowrap pr-32 flex-shrink-0 sm:opacity-12" style={{ fontSize: '20rem', WebkitTextStroke: '2px white', color: 'transparent', opacity: '0.03' }}>
               01001001 01101101 01100001 01100111 01100101 01110011 00100000 01110000 01100001 01110010 00100000 01110011 01100101 01100011 01101111 01101110 01100100 01100101 01110011
             </div>
           </div>
@@ -236,7 +236,7 @@ export function HomePage({ lang }: HomePageProps) {
         />
 
         {/* Logo IPS - Top Left */}
-        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
+        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 hidden sm:block">
           <div className="text-white">
             <div className="font-grotesk font-bold text-lg sm:text-2xl mb-1">
               ips:
@@ -250,10 +250,10 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* Info Cards - Responsive Layout - Below header */}
-        <div className="absolute right-4 top-[88px] sm:right-8 sm:top-[100px] z-20 flex flex-col gap-2 sm:gap-5">
+        {/* Info Cards - Responsive Layout */}
+        <div className="absolute right-4 top-[100px] sm:right-8 sm:top-8 sm:bottom-8 z-20 flex flex-col gap-2 sm:gap-5">
           {/* Mobile: Layout compact avec moins de cartes */}
-          <div className="flex flex-col gap-2 sm:hidden">
+          <div className="flex flex-col gap-4 sm:hidden">
             <InfoCard
               title="INFO"
               subtitle=""
@@ -280,7 +280,7 @@ export function HomePage({ lang }: HomePageProps) {
                 bottomText={t.infoCards.hallPercentFull.replace('{percent}', fillPercent1.toString())}
                 large={false}
                 small={true}
-                compact={true}
+                compact={false}
               />
             ) : (
               <InfoCard
@@ -296,11 +296,11 @@ export function HomePage({ lang }: HomePageProps) {
                 bottomText={t.infoCards.hallPercentFull.replace('{percent}', '85')}
                 large={false}
                 small={true}
-                compact={true}
+                compact={false}
               />
             )}
             
-            {/* Carte "Toutes les dates" compacte sur mobile */}
+            {/* Carte "Toutes les dates" sur mobile */}
             <InfoCard
               title={t.infoCards.allDates.toUpperCase()}
               subtitle={t.infoCards.upcomingPerformances}
@@ -316,7 +316,7 @@ export function HomePage({ lang }: HomePageProps) {
               uniformDates={true}
               highlightNextDate={true}
               small={true}
-              compact={true}
+              compact={false}
             />
           </div>
 
@@ -329,7 +329,7 @@ export function HomePage({ lang }: HomePageProps) {
               href="#about"
               icon=""
               notification={false}
-              small={false}
+              small={true}
             />
             
             {/* Première date dynamique */}
@@ -419,8 +419,8 @@ export function HomePage({ lang }: HomePageProps) {
         </div>
 
         {/* Bottom Left Horizontal Layout - SMC + POINT + HEURES + REAL TIME */}
-        <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-20">
-          <div className="flex items-center gap-2 sm:gap-6">
+        <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-auto z-20">
+          <div className="flex items-center justify-between gap-2 sm:gap-6">
             {/* IPS */}
             <div className="text-white">
               <div className="font-grotesk font-bold text-xl sm:text-3xl md:text-4xl">
@@ -428,14 +428,17 @@ export function HomePage({ lang }: HomePageProps) {
               </div>
             </div>
             
-            {/* POINT (icône circulaire) */}
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-brand-orange rounded-full flex items-center justify-center">
-              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
-            </div>
-            
-            {/* HEURES CET EDT CST */}
-            <div className="text-white">
-              <TimeZones />
+            {/* Groupe central - POINT + HEURES */}
+            <div className="flex items-center gap-2 sm:gap-6">
+              {/* POINT (icône circulaire) */}
+              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-brand-orange rounded-full flex items-center justify-center">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
+              </div>
+              
+              {/* HEURES CET EDT CST */}
+              <div className="text-white">
+                <TimeZones />
+              </div>
             </div>
             
             {/* REAL TIME */}
@@ -448,13 +451,14 @@ export function HomePage({ lang }: HomePageProps) {
           </div>
         </div>
 
-        {/* H1 Title - Vertical Left */}
-        <div className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20">
-          <h1 className="font-grotesk font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white animate-float leading-none">
+        {/* H1 Title - Vertical on mobile, centered on desktop */}
+        <div className="absolute left-4 sm:inset-0 sm:flex sm:items-center sm:justify-center top-[52%] -translate-y-1/2 sm:translate-y-0 z-20">
+          {/* Mobile: Vertical layout */}
+          <h1 className="font-grotesk font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white animate-float leading-none sm:hidden opacity-0">
             {t.hero.title.split("").map((letter, index) => (
               <div
                 key={index}
-                className="animate-fade-in-up"
+                className="animate-fade-in-up opacity-0"
                 style={{ 
                   animationDelay: `${index * 50}ms`,
                   animationFillMode: 'both'
@@ -463,6 +467,11 @@ export function HomePage({ lang }: HomePageProps) {
                 {letter === " " ? "\u00A0" : letter}
               </div>
             ))}
+          </h1>
+          
+          {/* Desktop: Centered horizontal layout */}
+          <h1 className="hidden sm:block font-grotesk font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white text-center animate-float leading-tight px-4">
+            {t.hero.title}
           </h1>
         </div>
 
@@ -491,7 +500,7 @@ export function HomePage({ lang }: HomePageProps) {
         <div className="container-custom relative z-10">
           <SectionLabel number="01" title={t.about.sectionTitle} />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center mb-12 sm:mb-16 md:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 md:gap-16 items-center mb-12 sm:mb-16 md:mb-20">
             <div className="space-y-8 scroll-reveal">
               <h2 className="font-grotesk font-bold text-5xl md:text-6xl text-white">
                 {t.about.heading}
@@ -501,7 +510,7 @@ export function HomePage({ lang }: HomePageProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center stagger-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-8 text-center stagger-fade-in">
               <div>
                 <div className="text-4xl md:text-5xl font-grotesk font-bold text-brand-orange counter" data-target="8">
                   0
@@ -523,7 +532,7 @@ export function HomePage({ lang }: HomePageProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
             <LiquidCard
               title={t.about.cards.choreography.title}
               description={t.about.cards.choreography.description}
@@ -565,27 +574,51 @@ export function HomePage({ lang }: HomePageProps) {
           
           {/* Filter Bar */}
           <div className="sticky top-20 sm:top-24 z-30 mb-8 sm:mb-12">
-            <div className="glass rounded-full p-1 sm:p-2 inline-flex gap-1 sm:gap-2 overflow-x-auto">
-              {filters.map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 whitespace-nowrap ${
-                    activeFilter === filter
-                      ? 'bg-brand-orange text-white'
-                      : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
+            {/* Mobile: Dropdown */}
+            <div className="sm:hidden">
+              <select
+                value={activeFilter}
+                onChange={(e) => setActiveFilter(e.target.value)}
+                className="w-full glass rounded-full p-3 text-sm font-inter text-white bg-transparent border-none outline-none appearance-none cursor-pointer"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23E85002' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+                  backgroundPosition: 'right 12px center',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: '16px'
+                }}
+              >
+                {filters.map((filter) => (
+                  <option key={filter} value={filter} className="bg-black text-white">
+                    {filter}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Desktop: Button Bar */}
+            <div className="hidden sm:block">
+              <div className="glass rounded-full p-1 sm:p-2 inline-flex gap-1 sm:gap-2">
+                {filters.map((filter) => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-inter transition-all duration-300 whitespace-nowrap ${
+                      activeFilter === filter
+                        ? 'bg-brand-orange text-white'
+                        : 'text-gray-light hover:bg-brand-orange/20 hover:text-white'
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Shows Grid */}
           <motion.div 
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8"
           >
             <AnimatePresence mode="popLayout">
               {filteredShows.map((show) => (
@@ -718,7 +751,7 @@ export function HomePage({ lang }: HomePageProps) {
         <div className="container-custom">
           <SectionLabel number="04" title={t.contact.sectionTitle} />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 md:gap-16">
             {/* Contact Form */}
             <div className="scroll-reveal">
               <ContactForm lang={lang} />
@@ -757,7 +790,7 @@ export function HomePage({ lang }: HomePageProps) {
                 </div>
               </div>
 
-              <div>
+              <div className="hidden sm:block">
                 <h4 className="font-inter font-semibold text-white mb-4">{t.contact.info.followUs}</h4>
                 <div className="flex flex-col gap-2">
                   {["Instagram", "Facebook", "YouTube", "Vimeo"].map((social) => (

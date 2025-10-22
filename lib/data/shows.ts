@@ -12,6 +12,7 @@ export const showsFr: Show[] = [
     duration: "55'",
     description: "pièce pour 6 danseurs",
     category: "Pièces longues",
+    image: "/img/parallaxe.jpg",
   },
   {
     title: "FOCAL",
@@ -19,6 +20,7 @@ export const showsFr: Show[] = [
     duration: "35'",
     description: "duo lumière-corps",
     category: "Duo/Trio",
+    image: "/img/focal.jpg",
   },
   {
     title: "24 i/s",
@@ -26,6 +28,7 @@ export const showsFr: Show[] = [
     duration: "50'",
     description: "écrans et chœur",
     category: "Pièces longues",
+    image: "/img/24is.jpg",
   },
   {
     title: "NOISE",
@@ -33,6 +36,7 @@ export const showsFr: Show[] = [
     duration: "20'",
     description: "solo in situ",
     category: "In situ",
+    image: "/img/noise.jpg",
   },
   {
     title: "PERSISTANCE",
@@ -40,6 +44,7 @@ export const showsFr: Show[] = [
     duration: "40'",
     description: "trio",
     category: "Duo/Trio",
+    image: "/img/nathan-dumlao-5Hl5reICevY-unsplash.jpg",
   },
   {
     title: "PIXELS",
@@ -47,6 +52,7 @@ export const showsFr: Show[] = [
     duration: "30'",
     description: "jeune public",
     category: "Jeune public",
+    image: "/img/pixels.jpg",
   },
 ];
 
@@ -57,6 +63,7 @@ export const showsEn: Show[] = [
     duration: "55'",
     description: "piece for 6 dancers",
     category: "Long pieces",
+    image: "/img/parallaxe.jpg",
   },
   {
     title: "FOCAL",
@@ -64,6 +71,7 @@ export const showsEn: Show[] = [
     duration: "35'",
     description: "light-body duo",
     category: "Duo/Trio",
+    image: "/img/focal.jpg",
   },
   {
     title: "24 f/s",
@@ -71,6 +79,7 @@ export const showsEn: Show[] = [
     duration: "50'",
     description: "screens and choir",
     category: "Long pieces",
+    image: "/img/24is.jpg",
   },
   {
     title: "NOISE",
@@ -78,6 +87,7 @@ export const showsEn: Show[] = [
     duration: "20'",
     description: "in situ solo",
     category: "In situ",
+    image: "/img/noise.jpg",
   },
   {
     title: "PERSISTANCE",
@@ -85,6 +95,7 @@ export const showsEn: Show[] = [
     duration: "40'",
     description: "trio",
     category: "Duo/Trio",
+    image: "/img/nathan-dumlao-5Hl5reICevY-unsplash.jpg",
   },
   {
     title: "PIXELS",
@@ -92,6 +103,7 @@ export const showsEn: Show[] = [
     duration: "30'",
     description: "young audience",
     category: "Young audience",
+    image: "/img/pixels.jpg",
   },
 ];
 

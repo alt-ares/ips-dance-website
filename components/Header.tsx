@@ -59,7 +59,7 @@ export function Header({ lang = "fr" }: HeaderProps = {}) {
 
       {/* Header */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-none md:w-auto md:min-w-[800px] md:max-w-5xl">
-        <div className="glass rounded-none md:rounded-full mx-4 md:mx-0">
+        <div className="glass rounded-3xl md:rounded-full mx-4 md:mx-0">
           <div className="px-4 sm:px-6 md:px-12 py-2">
             <div className="flex items-center justify-between h-12 md:h-16">
               {/* Logo */}

@@ -70,24 +70,24 @@ export function InfoCard({
     <motion.a
       href={href}
       onClick={handleClick}
-      className={`group relative block w-full ${compact ? 'max-w-[240px]' : 'max-w-[280px]'} sm:max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
+      className={`group relative block w-full ${compact ? 'w-full sm:max-w-[280px]' : 'max-w-[280px]'} sm:max-w-sm ${small ? 'flex-none' : 'flex-1'}`}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className={`glass rounded-2xl cursor-glow relative overflow-hidden ${small ? 'h-auto flex items-center' : 'h-full flex flex-col'} ${large ? 'p-8' : compact ? 'p-3' : small ? 'p-4' : 'p-6'}`}>
+      <div className={`glass-mobile sm:glass rounded-2xl cursor-glow relative overflow-hidden ${small ? 'h-auto flex flex-col justify-center' : 'h-full flex flex-col'} ${large ? 'p-8' : compact ? 'p-5' : small ? 'p-6' : 'p-6'}`}>
         {/* Notification dot */}
         {notification && (
           <div className="absolute top-4 right-4 w-2 h-2 bg-brand-orange rounded-full animate-pulse" />
         )}
         
         {/* Header - Single Column Layout */}
-        <div className={`flex flex-col ${small ? '' : 'mb-3'}`}>
-          <div className="flex items-center justify-between w-full mb-2">
-            <h3 className={`font-grotesk font-bold text-white ${large ? 'text-xl' : compact ? 'text-sm' : small ? 'text-base' : 'text-lg'}`}>
+        <div className={`flex flex-col ${small ? 'mb-0' : 'mb-3'}`}>
+          <div className={`relative w-full ${small ? 'mb-0' : 'mb-2'}`}>
+            <h3 className={`font-grotesk font-bold text-white ${large ? 'text-xl' : compact ? 'text-sm' : small ? 'text-lg' : 'text-lg'}`}>
               {title}
             </h3>
             <motion.div
-              className="w-4 h-4 text-white flex items-center justify-center"
+              className="absolute top-0 right-0 w-4 h-4 text-white flex items-center justify-center"
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -100,7 +100,7 @@ export function InfoCard({
         <div className={`space-y-1 ${large ? 'space-y-2' : ''} ${small ? '' : 'flex-1 flex flex-col justify-center'}`}>
           {/* Subtitle */}
           {subtitle && (
-            <p className={`text-white font-inter ${large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'}`}>
+            <p className={`text-white font-inter ${large ? 'text-base' : compact ? 'text-xs' : small ? 'text-sm' : 'text-sm'}`}>
               {subtitle}
             </p>
           )}
@@ -108,7 +108,7 @@ export function InfoCard({
           {/* Main content - Single column */}
           {content && (
             <div className={`${highlightNextDate ? 'bg-brand-orange rounded-lg px-2 py-1' : ''}`}>
-              <p className={`font-inter font-medium text-white ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
+              <p className={`font-inter font-medium text-white ${uniformDates ? (large ? 'text-sm' : 'text-sm') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-sm' : 'text-sm'))}`}>
                 {content}
               </p>
             </div>
@@ -116,24 +116,24 @@ export function InfoCard({
           
           {/* Right content (dates) */}
           {rightContent && (
-            <p className={`text-white font-inter font-medium ${uniformDates ? (large ? 'text-sm' : 'text-xs') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-xs' : 'text-sm'))}`}>
+            <p className={`text-white font-inter font-medium ${uniformDates ? (large ? 'text-sm' : 'text-sm') : (extraContent ? 'text-sm' : (large ? 'text-base' : compact ? 'text-xs' : small ? 'text-sm' : 'text-sm'))}`}>
               {rightContent}
             </p>
           )}
 
           {/* Additional content lines - Vertical stack */}
           {bottomText && (
-            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : small ? 'text-sm' : 'text-xs'}`}>
               {bottomText}
             </p>
           )}
           {extraContent && (
-            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : small ? 'text-sm' : 'text-xs'}`}>
               {extraContent}
             </p>
           )}
           {extraContent2 && (
-            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : 'text-xs'}`}>
+            <p className={`text-white font-inter font-medium ${large ? 'text-sm' : compact ? 'text-xs' : small ? 'text-sm' : 'text-xs'}`}>
               {extraContent2}
             </p>
           )}

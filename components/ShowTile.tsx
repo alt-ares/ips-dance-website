@@ -10,6 +10,7 @@ interface ShowTileProps {
   duration: string;
   description: string;
   category?: string;
+  image?: string;
 }
 
 export function ShowTile({
@@ -18,6 +19,7 @@ export function ShowTile({
   duration,
   description,
   category,
+  image,
 }: ShowTileProps) {
   const tileRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
@@ -33,15 +35,24 @@ export function ShowTile({
       ref={tileRef}
       className="relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer group"
     >
-      {/* Background image placeholder */}
+      {/* Background image */}
       <div className="absolute inset-0 bg-gray-dark tile-content">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center p-6">
-            <div className="text-6xl md:text-7xl font-grotesk font-bold text-white/10 mb-4">
-              {title}
+        {image ? (
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center p-6">
+              <div className="text-6xl md:text-7xl font-grotesk font-bold text-white/10 mb-4">
+                {title}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Orange overlay with wipe effect */}
