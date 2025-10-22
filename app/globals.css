@@ -387,19 +387,32 @@
   }
 
   /* Mobile filter select styling */
-  select {
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #a7a7a7;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .select-wrapper select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a7a7a7' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 12px center;
-    background-repeat: no-repeat;
-    background-size: 16px;
+    background-image: none;
     padding-right: 40px;
-  }
-
-  select:focus {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23e85002' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    width: 100%;
   }
 
   /* Custom scrollbar */

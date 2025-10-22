@@ -573,7 +573,9 @@ export function HomePage({ lang }: HomePageProps) {
       </section>
 
         {/* Réalisations Section */}
-        <section id="realisations" className="section-padding content-overlay">
+        <section id="realisations" className="section-padding content-overlay overflow-hidden">
+        <div className="absolute -right-[300px] top-1/2 -translate-y-1/2 w-[800px] h-[800px] orange-halo opacity-40" />
+        
         <div className="container-custom">
           <SectionLabel number="02" title={t.works.sectionTitle} />
           
@@ -581,17 +583,19 @@ export function HomePage({ lang }: HomePageProps) {
           <div className="sticky top-20 sm:top-24 z-30 mb-8 sm:mb-12">
             {/* Mobile: Dropdown select */}
             <div className="sm:hidden">
-              <select
-                value={activeFilter}
-                onChange={(e) => setActiveFilter(e.target.value)}
-                className="w-full glass rounded-full px-4 py-3 text-sm font-inter bg-transparent text-white border border-white/10 focus:border-brand-orange focus:outline-none"
-              >
-                {filters.map((filter) => (
-                  <option key={filter} value={filter} className="bg-black text-white">
-                    {filter}
-                  </option>
-                ))}
-              </select>
+              <div className="select-wrapper">
+                <select
+                  value={activeFilter}
+                  onChange={(e) => setActiveFilter(e.target.value)}
+                  className="glass rounded-full px-4 py-3 text-sm font-inter bg-transparent text-white border border-white/10 focus:border-brand-orange focus:outline-none"
+                >
+                  {filters.map((filter) => (
+                    <option key={filter} value={filter} className="bg-black text-white">
+                      {filter}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             
             {/* Desktop: Button pills */}
@@ -642,7 +646,9 @@ export function HomePage({ lang }: HomePageProps) {
       </section>
 
         {/* Dates Section */}
-        <section id="dates" className="section-padding content-overlay">
+        <section id="dates" className="section-padding content-overlay overflow-hidden">
+        <div className="absolute -left-[300px] top-1/2 -translate-y-1/2 w-[800px] h-[800px] orange-halo opacity-40" />
+        
         <div className="container-custom">
           <SectionLabel number="03" title={t.dates.sectionTitle} />
           
@@ -745,7 +751,7 @@ export function HomePage({ lang }: HomePageProps) {
 
         {/* Contact Section */}
         <section id="contact" className="section-padding content-overlay overflow-hidden">
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 orange-halo opacity-30" />
+        <div className="absolute -right-[300px] top-1/2 -translate-y-1/2 w-[800px] h-[800px] orange-halo opacity-40" />
         
         <div className="container-custom">
           <SectionLabel number="04" title={t.contact.sectionTitle} />
