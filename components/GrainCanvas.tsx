@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function GrainCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -68,6 +70,10 @@ export function GrainCanvas() {
       window.removeEventListener("resize", setCanvasSize);
     };
   }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <canvas

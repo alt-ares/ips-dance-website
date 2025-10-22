@@ -37,22 +37,26 @@ export function ShowTile({
     >
       {/* Background image */}
       <div className="absolute inset-0 bg-gray-dark tile-content">
-        {image ? (
+        {image && (
           <img
             src={image}
             alt={title}
             className="w-full h-full object-cover"
             loading="lazy"
+            onError={(e) => {
+              console.error('Image failed to load:', image);
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center p-6">
-              <div className="text-6xl md:text-7xl font-grotesk font-bold text-white/10 mb-4">
-                {title}
-              </div>
+        )}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center p-6">
+            <div className="text-6xl md:text-7xl font-grotesk font-bold text-white/10 mb-4">
+              {title}
             </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Orange overlay with wipe effect */}

@@ -27,6 +27,7 @@ import {
   formatDateDisplay, 
   formatVenueCity
 } from "@/lib/utils/dateFormatters";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface HomePageProps {
   lang: Language;
@@ -133,8 +134,7 @@ export function HomePage({ lang }: HomePageProps) {
       window.removeEventListener('mousemove', handleMouseMove);
       
       // Nettoyer les ScrollTriggers GSAP
-      if (typeof window !== 'undefined') {
-        const ScrollTrigger = require('gsap/ScrollTrigger').ScrollTrigger;
+      if (typeof window !== 'undefined' && ScrollTrigger) {
         ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
       }
     };
